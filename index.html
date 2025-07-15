@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>วิเคราะห์บาคาร่าของฉัน v12.1</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>วิเคราะห์บาคาร่าของฉัน v12.1</h1>
+    <input type="text" id="inputResult" placeholder="P,B,P หรือ PBPT">
+    <button onclick="addResult()">เพิ่มผล</button>
+    <button onclick="analyzeNext()">วิเคราะห์ตาถัดไป</button>
+    <div id="patternButtons">
+        <label>เลือกจำนวนตาย้อนหลัง:</label>
+        <button onclick="setPatternLength(5)">5</button>
+        <button onclick="setPatternLength(8)">8</button>
+        <button onclick="setPatternLength(10)">10</button>
+        <button onclick="setPatternLength(12)">12</button>
+        <button onclick="setPatternLength(15)">15</button>
+    </div>
+    <button onclick="newRound()">เริ่มรอบใหม่</button>
+    <button onclick="toggleHistory()">เปิด/ปิด ดูประวัติย้อนหลัง</button>
+    <button onclick="backupData()">📥 สำรองข้อมูล</button>
+    <input type="file" id="importFile" onchange="importData(event)">
+    <div id="currentRound"><h2>รอบปัจจุบัน</h2><div id="currentResults"></div></div>
+    <div id="recommendation"><h2>คำแนะนำตาถัดไป</h2><div id="suggestionText"></div></div>
+    <div id="history" style="display:none;">
+        <h2>ประวัติแต่ละรอบ</h2>
+        <div id="historyRounds"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

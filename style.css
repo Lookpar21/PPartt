@@ -1,0 +1,18 @@
+
+body {
+    font-family: sans-serif;
+    padding: 20px;
+    background-color: #fff;
+}
+input, button {
+    margin: 5px;
+    padding: 8px;
+}
+button {
+    background-color: #e0e0e0;
+    border: none;
+    border-radius: 4px;
+}
+#patternButtons button {
+    margin-right: 5px;
+}
