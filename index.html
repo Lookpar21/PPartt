@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>วิเคราะห์บาคาร่าของฉัน</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>วิเคราะห์บาคาร่าของฉัน</h1>
+        <label for="input">ใส่ผลไพ่ (P = Player, B = Banker, T = Tie):</label>
+        <input type="text" id="input" placeholder="P,B,P หรือ PBPT">
+        <button onclick="addResult()">เพิ่มผล</button>
+        <button onclick="analyzeNext()">วิเคราะห์ตาถัดไป</button>
+<div style="margin-top:10px;">
+    <label><b>เลือกจำนวนตาย้อนหลัง:</b></label>
+    <button onclick="setPatternLength(5)">5</button>
+    <button onclick="setPatternLength(8)">8</button>
+    <button onclick="setPatternLength(10)">10</button>
+    <button onclick="setPatternLength(12)">12</button>
+    <button onclick="setPatternLength(15)">15</button>
+</div>
+
+        <button onclick="startNewRound()">เริ่มรอบใหม่</button>
+        <button onclick="toggleHistory()">เปิด/ปิด ดูประวัติย้อนหลัง</button>
+
+        <div id="current-analysis">
+            <h2>รอบปัจจุบัน</h2>
+            <p id="current-round"></p>
+            <h2>คำแนะนำตาถัดไป</h2>
+            <p id="next-recommendation"></p>
+            <p id="used-pattern" class="pattern-info"></p>
+        </div>
+
+        <div id="history" style="display:none;">
+            <h2>ประวัติแต่ละรอบ</h2>
+            <div id="history-content"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
