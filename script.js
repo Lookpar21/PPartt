@@ -5,7 +5,6 @@ let patternLength = 5;
 function saveState() {
     localStorage.setItem('baccarat_history', JSON.stringify(history));
     localStorage.setItem('baccarat_current', JSON.stringify(currentRound));
-    autoBackup(); // 🔁 เพิ่มการบันทึกอัตโนมัติทุกครั้งที่มีการเปลี่ยนแปลง
 }
 
 function addResult() {
@@ -18,6 +17,7 @@ function addResult() {
     document.getElementById('inputResult').value = '';
     saveState();
     displayCurrent();
+    analyzeNext();
 }
 
 function newRound() {
@@ -85,25 +85,11 @@ function backupData() {
         baccarat_history: history,
         baccarat_current: currentRound
     };
-    const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'baccarat_backup.json';
-    a.click();
-}
-
-// ✅ ใหม่: ฟังก์ชันบันทึกสำรองอัตโนมัติ (.bak)
-function autoBackup() {
-    const data = {
-        baccarat_history: history,
-        baccarat_current: currentRound
-    };
     const blob = new Blob([JSON.stringify(data)], { type: 'application/octet-stream' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'baccarat_backup.bak';
+    a.download = 'baccarat_backup.bak'; // ✅ Safari จะเด้งไปแอป "ไฟล์"
     a.style.display = 'none';
     document.body.appendChild(a);
     a.click();
@@ -133,4 +119,5 @@ function importData(event) {
 window.onload = function () {
     displayCurrent();
     displayHistory();
+    analyzeNext();
 };
