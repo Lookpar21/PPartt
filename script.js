@@ -1,4 +1,3 @@
-
 let history = JSON.parse(localStorage.getItem('baccarat_history')) || [];
 let currentRound = JSON.parse(localStorage.getItem('baccarat_current')) || [];
 let patternLength = 5;
@@ -6,6 +5,7 @@ let patternLength = 5;
 function saveState() {
     localStorage.setItem('baccarat_history', JSON.stringify(history));
     localStorage.setItem('baccarat_current', JSON.stringify(currentRound));
+    autoBackup(); // 🔁 เพิ่มการบันทึกอัตโนมัติทุกครั้งที่มีการเปลี่ยนแปลง
 }
 
 function addResult() {
@@ -91,6 +91,23 @@ function backupData() {
     a.href = url;
     a.download = 'baccarat_backup.json';
     a.click();
+}
+
+// ✅ ใหม่: ฟังก์ชันบันทึกสำรองอัตโนมัติ (.bak)
+function autoBackup() {
+    const data = {
+        baccarat_history: history,
+        baccarat_current: currentRound
+    };
+    const blob = new Blob([JSON.stringify(data)], { type: 'application/octet-stream' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'baccarat_backup.bak';
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
 }
 
 function importData(event) {
