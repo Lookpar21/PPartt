@@ -117,6 +117,12 @@ function importData(event) {
 }
 
 window.onload = function () {
+    // ลบข้อมูลเก่าทุกครั้งที่โหลดหน้าเว็บ
+    localStorage.removeItem('baccarat_history');
+    localStorage.removeItem('baccarat_current');
+    history = [];
+    currentRound = [];
+
     displayCurrent();
     displayHistory();
     analyzeNext();
